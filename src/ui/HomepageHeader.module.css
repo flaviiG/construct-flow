@@ -1,0 +1,41 @@
+.nav {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  font-family: "Protest Guerrilla";
+  font-size: 30px;
+}
+
+.linkList {
+  display: flex;
+  justify-content: end;
+  font-size: 20px;
+}
+
+.nav li {
+  text-decoration: none;
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.link {
+  text-decoration: none;
+  padding-right: 2rem;
+  color: inherit;
+  border-radius: 10px;
+}
+
+.linkList .link {
+  padding-left: 2rem;
+}
+
+.link:visited {
+  color: white;
+}

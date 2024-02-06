@@ -1,0 +1,13 @@
+.projectContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  height: 50rem;
+  overflow-x: hidden;
+}
+
+.projectContainer::-webkit-scrollbar {
+  width: 0;
+}

@@ -1,0 +1,28 @@
+.nav {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 2rem;
+}
+
+.btnList {
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav p {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: inherit;
+  border-radius: 10px;
+  cursor: pointer;
+}

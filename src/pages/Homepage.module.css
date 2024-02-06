@@ -1,0 +1,23 @@
+.homepageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 40rem;
+}
+
+.description {
+  padding-top: 3rem;
+  text-align: center;
+  width: 80%;
+  padding-bottom: 3rem;
+  font-size: 30px;
+}
+
+.morebtn {
+  border-style: solid;
+  border-color: white;
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 0.5rem;
+}

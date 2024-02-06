@@ -1,0 +1,29 @@
+.nav {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  font-family: "Protest Guerrilla";
+  font-size: 20px;
+}
+
+.btnList {
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav p {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: inherit;
+  border-radius: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,81 @@
+.loginPage {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContainer {
+  box-sizing: border-box;
+  padding: 2rem;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.436);
+}
+
+.loginContainer h2 {
+  font-size: 30px;
+}
+
+.loginContainer form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loginContainer input {
+  width: 100%;
+  background-color: transparent;
+  padding: 1rem;
+  margin: 1rem;
+  border: 0;
+  border-bottom: 2px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.06);
+}
+.loginContainer input,
+textarea {
+  color: white;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: italic;
+}
+
+.loginContainer input:focus {
+  border: 0;
+}
+
+.loginContainer input::placeholder {
+  color: white;
+}
+
+.loginContainer input[type="submit"] {
+  display: none;
+}
+
+.loginContainer button {
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px;
+  border: none;
+  background-color: var(--color-light--2);
+  color: #4f4f4f;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 85%;
+}
+
+*:focus {
+  outline: none !important;
+}

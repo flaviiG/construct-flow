@@ -1,0 +1,47 @@
+@import "https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Afacad&family=Protest+Guerrilla&display=swap";
+
+:root {
+  --color-brand--2: #88ab8e;
+  --color-brand--1: #eee7da;
+
+  --color-dark--1: #88ab8e;
+  --color-dark--2: #afc8ad;
+
+  --color-light--1: #f2f1eb;
+  --color-light--2: #eee7da;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  height: 100%;
+  max-height: 100vh;
+  background-image: url("/background.jpg");
+  background-size: cover; /* Adjust based on your needs */
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0; /* Remove default margin to ensure full coverage */
+  padding: 0; /* Remove default padding to ensure full coverage */
+  color: white;
+  font-family: "Afacad", sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

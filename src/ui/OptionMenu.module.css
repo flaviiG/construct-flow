@@ -1,0 +1,26 @@
+.menuContainer {
+  height: 12rem;
+  width: 10rem;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: var(--color-light--2);
+  background-color: var(--color-light--2);
+  position: absolute;
+  z-index: 1000;
+  color: black;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.menuContainer div {
+  cursor: pointer;
+  padding-top: 0.6rem;
+}
+
+.delete {
+  color: rgb(255, 65, 65);
+  font-weight: bold;
+  cursor: pointer;
+}
