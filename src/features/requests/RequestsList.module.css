@@ -1,13 +1,16 @@
+.listContainer {
+  width: 90%;
+  max-height: 80vh; /* Set an appropriate maximum height */
+  overflow-y: auto;
+}
+
 .projectContainer {
-  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  padding: 1rem;
-  height: 50rem;
   overflow-x: hidden;
 }
 
-.projectContainer::-webkit-scrollbar {
+.listContainer::-webkit-scrollbar {
   width: 0;
 }

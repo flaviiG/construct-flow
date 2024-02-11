@@ -1,18 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createRequest, updateRequestImage } from "../../services/requestsAPI";
-import { uploadImage } from "../../services/storageAPI";
+import {
+  createRequest,
+  removeRequest,
+  updateRequestAccept,
+  updateRequestImage,
+} from "../../services/requestsAPI";
+import { deleteUnusedImages, uploadImage } from "../../services/storageAPI";
 
 const supabaseImgUrl =
   "https://jdonnxlzzggztyagwzuq.supabase.co/storage/v1/object/public/images/";
 
 const initialState = {
   requests: [],
+  isLoading: true,
 };
 
 const requestsSlice = createSlice({
   name: "requests",
   initialState,
   reducers: {
+    requestsLoading(state, action) {
+      state.isLoading = true;
+    },
+    requestsLoaded(state, action) {
+      state.isLoading = false;
+    },
     setRequests(state, action) {
       state.requests = action.payload;
     },
@@ -40,8 +52,14 @@ const requestsSlice = createSlice({
   },
 });
 
-export const { setRequests, addedRequest, deletedRequest, updatedRequest } =
-  requestsSlice.actions;
+export const {
+  requestsLoading,
+  requestsLoaded,
+  setRequests,
+  addedRequest,
+  deletedRequest,
+  updatedRequest,
+} = requestsSlice.actions;
 
 export default requestsSlice.reducer;
 
@@ -64,10 +82,31 @@ export const addRequest = (request) => async (dispatch) => {
       id: id,
       createdAt: created_at,
       image: imageUrl,
+      accepted: false,
     };
 
     console.log(newRequest);
     dispatch(addedRequest(newRequest));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteRequest = (id) => async (dispatch) => {
+  try {
+    await removeRequest(id);
+    // await deleteUnusedImages();
+    dispatch(deletedRequest(id));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const acceptRequest = (request, accepted) => async (dispatch) => {
+  try {
+    const id = request.id;
+    await updateRequestAccept(id, accepted);
+    dispatch(updatedRequest(id, request));
   } catch (err) {
     console.log(err);
   }

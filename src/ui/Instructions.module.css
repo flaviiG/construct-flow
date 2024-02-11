@@ -1,0 +1,18 @@
+.instructions {
+  width: 65vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions p {
+  font-size: 30px;
+}
+
+.instruction {
+  padding: 1rem;
+  border: solid 1px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}

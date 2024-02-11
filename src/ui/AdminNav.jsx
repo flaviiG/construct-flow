@@ -7,7 +7,7 @@ function AdminNav({ handleAddRequest, handleAddProject, handleLogout }) {
   return (
     <div className={styles.nav}>
       <div className={styles.logo}>
-        <img src="../../public/logo.png" width="128px" alt=""></img>
+        <img src="/logo.png" width="128px" alt=""></img>
         <h1 onClick={() => navigate("/")}>CONSTRUCT FLOW</h1>
       </div>
       <div className={styles.btnList}>

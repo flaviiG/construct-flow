@@ -1,0 +1,8 @@
+.userContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.userContainer p {
+  font-size: 30px;
+}

@@ -104,6 +104,7 @@ export const getUserStatus = () => async (dispatch) => {
   }
   const id = data.id;
   const user = await getUserDetails(id);
+
   dispatch(
     login(user.id, user.firstName, user.lastName, user.email, user.is_admin)
   );

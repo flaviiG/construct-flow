@@ -1,5 +1,6 @@
 .nav {
   padding-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,4 +27,5 @@
   color: inherit;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 20px;
 }

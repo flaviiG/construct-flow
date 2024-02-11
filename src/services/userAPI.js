@@ -17,4 +17,10 @@ export async function getUserDetails(id) {
   };
 }
 
+export async function getAllUsers() {
+  const { data: users, error } = await supabase.from("users").select("*");
+  if (error) throw new Error(error);
+  return users;
+}
+
 export async function getUserStatus() {}

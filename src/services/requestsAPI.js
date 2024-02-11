@@ -17,7 +17,7 @@ export async function createRequest(request) {
     .from("requests")
     .insert([
       {
-        user_id: 123,
+        user_id: request.user_id,
         name: request.name,
         description: request.description,
         budget: request.budget,
@@ -38,4 +38,20 @@ export async function updateRequestImage(id, url) {
     .eq("id", id);
 
   if (error) throw new Error("Failed to update project image");
+}
+
+export async function removeRequest(id) {
+  const { error } = await supabase.from("requests").delete().eq("id", id);
+
+  if (error) throw new Error(error);
+}
+
+export async function updateRequestAccept(id, accepted) {
+  const { data, error } = await supabase
+    .from("requests")
+    .update({ accepted: accepted })
+    .eq("id", id)
+    .select();
+
+  if (error) throw new Error(error);
 }

@@ -1,4 +1,5 @@
 import supabase from "./supabase";
+import { getUserDetails } from "./userAPI";
 
 export async function signUp(firstName, lastName, email, password) {
   const { data, error } = await supabase.auth.signUp({
@@ -40,10 +41,20 @@ export async function logout() {
 }
 
 export async function getUser() {
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
-  if (error !== null) return null;
-  else return user;
+  const data = await supabase.auth.getSession();
+  return data.data.session.user;
+}
+
+export async function checkAuth() {
+  const data = await supabase.auth.getSession();
+  const session = data.data.session;
+  return session;
+}
+
+export async function checkAuthAdmin() {
+  const data = await supabase.auth.getSession();
+  const id = data.data.session.user.id;
+  const user = await getUserDetails(id);
+
+  return user.is_admin;
 }

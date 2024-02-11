@@ -1,5 +1,5 @@
 .addContainer {
-  margin-top: 3rem;
+  margin-top: 1rem;
   backdrop-filter: blur(20px);
   border-radius: 20px;
   border-style: solid;
@@ -10,11 +10,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  width: 30rem;
-  height: 50rem;
+  width: 85%;
+  height: 65vh;
   border-style: solid;
   border-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .addContainer header {
@@ -132,4 +132,17 @@ textarea {
 [class^="react-select"] {
   font-style: normal;
   background-color: rgba(255, 255, 255, 0);
+}
+
+.imagesSlide {
+  width: 100%;
+  height: 30vh;
+  margin-top: 1rem;
+}
+
+.slide {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-size: cover;
+  border-radius: 10px;
 }

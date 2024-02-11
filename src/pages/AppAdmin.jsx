@@ -7,18 +7,17 @@ import AddProjectContainer from "../ui/AddProjectContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { addProject } from "../features/projects/projectsSlice";
 import { logout } from "../services/authAPI";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { logoutRed } from "../features/user/userSlice";
 import RequestsList from "../features/requests/RequestsList";
 import { addRequest } from "../features/requests/requestsSlice";
+import SideBar from "../ui/SideBar";
 
 function AppAdmin() {
   const [showAddProject, setShowAddProject] = useState(false);
   const [showAddRequest, setShowAddRequest] = useState(false);
 
   const navigate = useNavigate();
-
-  const { projects } = useSelector((state) => state.projects);
   const dispatch = useDispatch();
 
   function handleOpenAddProject() {
@@ -29,18 +28,18 @@ function AppAdmin() {
     setShowAddRequest(true);
   }
 
-  function handleAddProject(name, description, image, status) {
-    const newProject = { name, description, image, status };
+  function handleAddProject(user_id, name, description, image, status) {
+    const newProject = { user_id, name, description, image, status };
 
     dispatch(addProject(newProject));
     setShowAddProject(false);
   }
 
-  function handleAddRequest(name, description, image, budget) {
-    const newRequest = { name, description, image, budget };
+  function handleAddRequest(user_id, name, description, image, budget) {
+    const newRequest = { user_id, name, description, image, budget };
 
     dispatch(addRequest(newRequest));
-    setShowAddProject(false);
+    setShowAddRequest(false);
   }
 
   function handleLogout() {
@@ -60,19 +59,13 @@ function AppAdmin() {
           handleAddRequest={handleOpenAddRequest}
           handleLogout={handleLogout}
         />
-        <div className={styles.layout}>
-          <div>
-            <RequestsList />
-          </div>
-          <div>
-            <ProjectList />
-          </div>
-        </div>
+        <Outlet />
       </div>
 
       {showAddRequest === true ? (
         <div className={styles.allPage}>
           <AddProjectContainer
+            admin={true}
             isProject={false}
             handleAddProject={handleAddRequest}
             handleClose={() => setShowAddRequest(false)}
@@ -83,6 +76,7 @@ function AppAdmin() {
       {showAddProject === true ? (
         <div className={styles.allPage}>
           <AddProjectContainer
+            admin={true}
             isProject={true}
             handleAddProject={handleAddProject}
             handleClose={() => setShowAddProject(false)}

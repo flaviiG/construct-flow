@@ -1,15 +1,15 @@
 import styles from "./CustomerPage.module.css";
 import CustomerNav from "../ui/CustomerNav";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { logoutRed } from "../features/user/userSlice";
 import RequestsList from "../features/requests/RequestsList";
 import { useState } from "react";
 import AddProjectContainer from "../ui/AddProjectContainer";
-import { addProject } from "../features/projects/projectsSlice";
+import { addRequest } from "../features/requests/requestsSlice";
 
 function CustomerPage() {
-  const { customerId, firstName, lastName } = useParams();
+  const { id, firstName, lastName } = useSelector((state) => state.user);
   const [showAdd, setShowAdd] = useState(false);
 
   const dispatch = useDispatch();
@@ -25,10 +25,10 @@ function CustomerPage() {
     navigate("/");
   }
 
-  function handleAddProject(name, description, image, budget) {
-    const newProject = { name, description, image, budget };
+  function handleAddRequest(selected_id, name, description, image, budget) {
+    const newRequest = { user_id: id, name, description, image, budget };
 
-    dispatch(addProject(newProject));
+    dispatch(addRequest(newRequest));
     setShowAdd(false);
   }
 
@@ -41,14 +41,12 @@ function CustomerPage() {
           handleAdd={handleAdd}
           handleLogout={handleLogout}
         />
-        <div className={styles.layout}>
-          <RequestsList requests={{}} />
-        </div>
+        <Outlet />
       </div>
       {showAdd === true ? (
         <div className={styles.allPage}>
           <AddProjectContainer
-            handleAddProject={handleAddProject}
+            handleAddProject={handleAddRequest}
             handleClose={() => setShowAdd(false)}
           />
         </div>

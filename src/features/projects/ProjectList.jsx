@@ -2,17 +2,32 @@ import { useEffect, useState } from "react";
 import { getProjects } from "../../services/projectsAPI";
 import ProjectCard from "./ProjectCard";
 import { useDispatch, useSelector } from "react-redux";
-import { removeProject, setProjects } from "./projectsSlice";
+import {
+  projectsLoaded,
+  projectsLoading,
+  removeProject,
+  setProjects,
+} from "./projectsSlice";
 import styles from "./ProjectList.module.css";
 import OptionMenu from "../../ui/OptionMenu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ProjectList() {
   const { projects } = useSelector((state) => state.projects);
+  const { id, is_admin } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [selectedProject, setSelectedProject] = useState(null);
 
+  const filtered_projects = [...projects]
+    .filter((project) => is_admin || project.user_id === id)
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
 
   function toggleMenu(e, id) {
     const clickX = e.clientX;
@@ -27,18 +42,32 @@ function ProjectList() {
     setPosition({ x, y });
   }
 
-  function handleDelete(id) {
-    dispatch(removeProject(id));
+  function handleDelete() {
+    dispatch(removeProject(selectedProject));
+    if (is_admin) {
+      if (location !== "/admin/projects") navigate("/admin/projects");
+    } else {
+      if (location !== "/customer/projects") navigate("/customer/projects");
+    }
   }
 
   function handleCloseMenu() {
     setMenuOpen(false);
   }
 
+  function handleSelectCard(id) {
+    setSelectedProject(id);
+    navigate(`${id}`);
+  }
+
   useEffect(
     function () {
+      dispatch(projectsLoading());
       getProjects().then((data) => {
-        dispatch(setProjects(data));
+        if (data) {
+          dispatch(setProjects(data));
+          dispatch(projectsLoaded());
+        }
       });
     },
     [dispatch]
@@ -47,25 +76,31 @@ function ProjectList() {
     <>
       {menuOpen && (
         <OptionMenu
-          projectId={selectedProject}
           position={position}
           handleDelete={handleDelete}
           handleCloseMenu={handleCloseMenu}
         />
       )}
-      <div
-        className={styles.projectContainer}
-        style={menuOpen ? { overflow: "hidden" } : {}}
-      >
-        {projects
-          ? projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onToggleMenu={toggleMenu}
-              />
-            ))
-          : null}
+      <div className={styles.listContainer}>
+        {filtered_projects.length === 0 ? (
+          <p>No projects</p>
+        ) : (
+          <div
+            className={styles.projectContainer}
+            style={menuOpen ? { overflow: "hidden" } : {}}
+          >
+            {filtered_projects
+              ? filtered_projects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    onToggleMenu={toggleMenu}
+                    onSelectCard={handleSelectCard}
+                  />
+                ))
+              : null}
+          </div>
+        )}
       </div>
     </>
   );

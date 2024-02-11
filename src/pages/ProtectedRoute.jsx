@@ -1,35 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import supabase from "../services/supabase";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { checkAuth } from "../services/authAPI";
 
 function ProtectedRoute({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(
     function () {
-      async function checkUser() {
-        setIsLoading(true);
-        const res = await supabase.auth.getSession();
-        console.log("getSession:", res.data.session);
-        const auth = res.data.session === null ? false : true;
-        console.log(auth);
-        if (!auth) navigate("/");
-        setIsAuthenticated(auth);
-        setIsLoading(false);
-      }
-      checkUser();
+      checkAuth().then((data) =>
+        data === null ? navigate("/", { replace: true }) : setIsLoading(false)
+      );
     },
-    [isAuthenticated, navigate]
+    [navigate]
   );
-
-  if (isLoading === true) return <div>wait</div>;
-  if (!isAuthenticated) return null;
-
-  return children;
+  if (!isLoading) return children;
 }
 
 ProtectedRoute.propTypes = {

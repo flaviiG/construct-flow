@@ -1,0 +1,47 @@
+.detailsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 64vw;
+}
+
+.projectDetails {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  backdrop-filter: blur(20px);
+  height: 70vh;
+  padding: 2rem;
+  margin: 2rem;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 35px;
+}
+
+.description {
+  font-size: 30px;
+}
+
+.projectDetails img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.updatesSideBar {
+  margin-top: 2rem;
+  width: 50%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.updatesSideBar::-webkit-scrollbar {
+  width: 0;
+}

@@ -1,0 +1,43 @@
+.nav {
+  margin-bottom: 1rem;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  border-radius: 7px;
+}
+
+.nav a:link,
+.nav a:visited {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+}
+
+/* CSS Modules feature */
+.nav a:global(.active) {
+  background-color: rgba(0, 0, 0, 0.154);
+}
+
+.sideBar {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+}
+
+.sidebarChildren {
+  width: 100%;
+}
+
+.sidebarChildren::-webkit-scrollbar {
+  width: 0;
+}

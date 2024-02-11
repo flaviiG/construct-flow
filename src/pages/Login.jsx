@@ -28,7 +28,7 @@ function Login() {
     function () {
       if (id !== "") {
         if (is_admin) navigate("/admin");
-        else navigate(`/customer/${id}/${firstName}/${lastName}`);
+        else navigate(`/customer`);
       }
     },
     [id, is_admin, navigate, firstName, lastName]
