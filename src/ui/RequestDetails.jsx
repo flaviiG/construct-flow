@@ -8,6 +8,7 @@ function RequestDetails() {
   const { id } = useParams();
   const projectId = Number(id);
   const { isLoading, requests } = useSelector((state) => state.requests);
+  const { is_admin } = useSelector((state) => state.user);
   const request = requests.filter((req) => req.id === projectId)[0];
 
   if (isLoading) return <Spinner />;
@@ -19,8 +20,10 @@ function RequestDetails() {
           <Spinner />
         ) : (
           <>
-            <p className={styles.title}>{request.name}</p>
+            <h1 className={styles.title}>{request.name}</h1>
+            <br></br>
             <img src={request.image} alt=""></img>
+            <br></br>
             <p className={styles.description}>
               Description: <br></br> {request.description}
             </p>
@@ -29,7 +32,7 @@ function RequestDetails() {
           </>
         )}
       </div>
-      <UserDetails isProject={false} />
+      {is_admin && <UserDetails isProject={false} />}
     </div>
   );
 }

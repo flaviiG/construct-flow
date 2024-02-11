@@ -76,7 +76,7 @@ function RequestsList() {
         name: request.name,
         description: request.description,
         status: "Accepted",
-        user_id: request.userId,
+        user_id: request.user_id,
         image: request.image,
       };
       dispatch(addProject(newProject, false));

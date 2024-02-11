@@ -21,11 +21,6 @@ function HomepageHeader() {
             Register
           </Link>
         </li>
-        <li>
-          <Link to="/admin" className={styles.link}>
-            Projects
-          </Link>
-        </li>
       </div>
     </div>
   );
